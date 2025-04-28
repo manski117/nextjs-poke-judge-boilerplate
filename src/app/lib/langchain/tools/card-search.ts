@@ -1,18 +1,21 @@
-import { DynamicTool } from 'langchain/tools';
+import { StructuredTool } from 'langchain/tools';
 import { z } from 'zod';
-import { Fuse } from 'fuse.js';
 
 // This is a placeholder implementation that will be replaced with an actual API call
-// We're using the Pokemon TCG API (https://pokemontcg.io/)
-export const cardSearchTool = new DynamicTool({
-  name: 'card-search',
-  description: `Search for Pokemon cards by name, type, or other attributes. 
+export class CardSearchTool extends StructuredTool {
+  name = 'card-search';
+  description = `Search for Pokemon cards by name, type, or other attributes. 
 This tool takes a string query and performs a fuzzy search to find matching cards.
-Use this tool when the user asks about specific Pokemon cards, card details, or wants to see a card.`,
-  schema: z.object({
+Use this tool when the user asks about specific Pokemon cards, card details, or wants to see a card.`;
+  schema = z.object({
     query: z.string().describe('The search query for Pokemon cards'),
-  }),
-  func: async ({ query }) => {
+  });
+
+  constructor() {
+    super();
+  }
+
+  async _call({ query }: z.infer<typeof this.schema>) {
     try {
       // Configuration for the Pokemon TCG API
       const apiKey = process.env.POKEMON_TCG_API_KEY || ''; // Get your API key from pokemontcg.io
@@ -46,5 +49,8 @@ Use this tool when the user asks about specific Pokemon cards, card details, or 
       console.error('Error in card search tool:', error);
       return JSON.stringify([]);
     }
-  },
-});
+  }
+}
+
+// Export an instance of the tool
+export const cardSearchTool = new CardSearchTool();

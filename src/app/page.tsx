@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-// import { Pokeball, Send, RefreshCw } from 'lucide-react';
+import { CircleUser, Send, RefreshCw } from 'lucide-react';
 
 type Message = {
   role: 'user' | 'assistant';
@@ -98,7 +98,8 @@ export default function Home() {
     <main className="flex flex-col h-screen bg-base-200 p-4 max-w-6xl mx-auto">
       <div className="navbar bg-primary text-primary-content rounded-box mb-4">
         <div className="flex-1">
-          <Pokeball className="mr-2" />
+          {/* this is supposed to be a pokeball component */}
+          <CircleUser className="mr-2" />
           <span className="text-xl font-bold">Pokémon TCG Rules Assistant</span>
         </div>
         <div className="flex-none">

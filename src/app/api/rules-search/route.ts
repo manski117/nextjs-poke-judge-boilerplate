@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { rulesSearchTool } from '../../lib/langchain/tools/card-search';
+import { rulesSearchTool } from '../../lib/langchain/tools/rules-search'
 
 export async function POST(req: Request) {
   try {

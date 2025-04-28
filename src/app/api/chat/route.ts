@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { createAgent } from '../../lib/langchain/tools/card-search';
+import { createAgent } from '../../lib/langchain/agent' //'../../lib/langchain/tools/rules-search'
 import { AgentExecutor } from 'langchain/agents';
 
 export async function POST(req: Request) {
